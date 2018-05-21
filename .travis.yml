@@ -1,0 +1,19 @@
+language: bash
+
+services:
+  - docker
+
+before_install:
+  # - export PATH=$PATH:$HOME/.local/bin
+  # - echo $DOCKER_PASSWORD | docker login -u "$DOCKER_USERNAME" --password-stdin 
+
+install:
+  - docker pull somrc/hugo-build
+  - docker run -it somrc/hugo-build "git clone https://github.com/uvasomrc/rc-website.git"
+
+notifications:
+  email:
+    on_success: always
+    on_failure: always
+    recipients:
+    - nmagee@virginia.edu
