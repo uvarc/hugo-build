@@ -3,13 +3,15 @@ language: bash
 services:
   - docker
 
-before_install:
-  # - export PATH=$PATH:$HOME/.local/bin
-  # - echo $DOCKER_PASSWORD | docker login -u "$DOCKER_USERNAME" --password-stdin 
-
 install:
-  - docker pull somrc/hugo-build
-  - docker run -it somrc/hugo-build /bin/sh -c 'git clone https://github.com/uvasomrc/rc-website.git'
+  - docker run -it -e "TRAVIS_BRANCH=$TRAVIS_BRANCH" \
+    -e "BUCKET_NAME=$BUCKET_NAME" \
+    -e "DISTRIBUTION_ID=$DISTRIBUTION_ID" \
+    -e "BUCKET_NAME_STAGING=$BUCKET_NAME_STAGING" \
+    -e "STAGING_DISTRIBUTION_ID=$STAGING_DISTRIBUTION_ID" \
+    -e "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
+    -e "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" \
+    somrc/hugo-build /root/build/build-site.sh
 
 notifications:
   email:
