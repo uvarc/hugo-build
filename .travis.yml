@@ -9,7 +9,7 @@ before_install:
 
 install:
   - docker pull somrc/hugo-build
-  - docker run -it somrc/hugo-build "git clone https://github.com/uvasomrc/rc-website.git"
+  - docker run -it somrc/hugo-build "git clone 'https://github.com/uvasomrc/rc-website.git'"
 
 notifications:
   email:
