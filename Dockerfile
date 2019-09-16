@@ -5,7 +5,7 @@ WORKDIR /root/
 ENV AWS_DEFAULT_REGION us-east-1
 
 # Update, install Git and things
-RUN apk update && apk add git && apk add python2-dev && apk add py-yuicompressor
+RUN apk update && apk add git && apk add python2-dev && apk add py-yuicompressor && apk add coreutils && rm -rf /var/cache/apk/*
 
 # Install Hugo
 ADD https://github.com/gohugoio/hugo/releases/download/v0.50/hugo_0.50_Linux-64bit.tar.gz hugo_0.50.tar.gz
