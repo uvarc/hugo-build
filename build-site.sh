@@ -15,7 +15,8 @@ echo "-------------"
 echo $TRAVIS_BRANCH
 echo "-------------"
 
-EXPIRES=`date '+%a, %d %b %Y 00:00:00 GMT' -d "next-week"`
+EXPIRES=`date '+%a, %d %b %Y %H:%M:%S GMT' -d "+3 days"`
+echo "EXPIRES header set to: " $EXPIRES
 
 if [ $TRAVIS_BRANCH = "master" ]; then
   aws s3 sync public s3://$BUCKET_NAME --region=us-east-1 --cache-control public,max-age=$MAX_AGE --expires="$EXPIRES" --delete;
