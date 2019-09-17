@@ -15,7 +15,7 @@ echo "-------------"
 echo $TRAVIS_BRANCH
 echo "-------------"
 
-EXPIRES=`date '+%a, %d %b %Y %H:%M:%S GMT' -d "+3 days"`
+EXPIRES=`date '+%a, %d %b %Y %H:%M:%S GMT' -d "+1 day"`
 echo "EXPIRES header set to: " $EXPIRES
 
 if [ $TRAVIS_BRANCH = "master" ]; then
