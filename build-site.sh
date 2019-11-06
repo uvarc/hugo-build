@@ -10,8 +10,7 @@ yuicompressor --type js static/js/scripts.js > static/js/scripts.min.js
 yuicompressor --type css static/css/style.css > static/css/style.min.css
 
 # Which is faster?
-hugo -v
-# hugo -v --ignoreCache
+hugo -v --ignoreCache
 
 echo "-------------"
 echo $TRAVIS_BRANCH
