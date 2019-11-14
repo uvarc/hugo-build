@@ -18,7 +18,7 @@ echo "-------------"
 
 EXPIRES=`date '+%a, %d %b %Y %H:%M:%S GMT' -d "+1 day"`
 echo "EXPIRES header set to: " $EXPIRES
-HUGO="hugo-v0.50"
+HUGO="hugo-v0.59"
 
 if [ $TRAVIS_BRANCH = "master" ]; then
   aws s3 sync public s3://$BUCKET_NAME --region=us-east-1 --cache-control public,max-age=$MAX_AGE --expires="$EXPIRES" --metadata generator=$HUGO --delete;
