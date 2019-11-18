@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/uvarc/rc-website.svg?branch=master)](https://travis-ci.org/uvarc/rc-website)
+[![Build Status](https://travis-ci.org/uvarc/hugo-build.svg?branch=master)](https://travis-ci.org/uvarc/hugo-build)
 
 # Hugo Build container
 
