@@ -23,9 +23,12 @@ if [ $TRAVIS_BRANCH = "master" ]; then
   aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*";
   sleep 15;
   aws lambda invoke --function-name web-crawl --invocation-type RequestResponse "outfile.txt"
-elif [ $TRAVIS_BRANCH = "staging" ]; then 
-  HUGO="hugo-v0.59"
-  hugo -v --ignoreCache
+elif [ $TRAVIS_BRANCH = "staging" ]; then
+  HUGO="hugo-v0.69.0";
+  echo "Publishing with: " $HUGO;
+  hugo-0.69.0 -v --ignoreCache;
   aws s3 sync public s3://$BUCKET_NAME_STAGING --region=us-east-1 --cache-control public,max-age=$MAX_AGE --expires="$EXPIRES" --metadata generator=$HUGO --delete;
   aws cloudfront create-invalidation --distribution-id $STAGING_DISTRIBUTION_ID --paths "/*";
+  sleep 15;
+  aws lambda invoke --function-name web-crawl --invocation-type Event "outfile.txt"
 fi
