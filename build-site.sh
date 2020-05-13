@@ -18,6 +18,7 @@ echo "EXPIRES header set to: " $EXPIRES
 
 if [ $TRAVIS_BRANCH = "master" ]; then
   HUGO="hugo-v0.59"
+  echo "Publishing with: " $HUGO;
   hugo -v --ignoreCache
   aws s3 sync public s3://$BUCKET_NAME --region=us-east-1 --cache-control public,max-age=$MAX_AGE --expires="$EXPIRES" --metadata generator=$HUGO --delete;
   aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*";
