@@ -2,7 +2,7 @@
 
 set -e
 
-git clone --depth=50 --branch=$TRAVIS_BRANCH https://github.com/uvasomrc/rc-website.git
+git clone --depth=50 --branch=$TRAVIS_BRANCH https://github.com/uvarc/rc-website.git
 cd rc-website
 mkdir public
 
@@ -32,4 +32,6 @@ elif [ $TRAVIS_BRANCH = "staging" ]; then
   hugo-0.69.0 -v --ignoreCache;
   aws s3 sync public s3://$BUCKET_NAME_STAGING --region=us-east-1 --cache-control public,max-age=$MAX_AGE --expires="$EXPIRES" --metadata generator=$HUGO --delete;
   aws cloudfront create-invalidation --distribution-id $STAGING_DISTRIBUTION_ID --paths "/*";
+  sleep 15;
+  aws lambda invoke --function-name web-crawl --invocation-type Event "outfile.txt"
 fi
