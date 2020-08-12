@@ -2,14 +2,18 @@
 
 set -e
 
-git clone --depth=50 --branch=$TRAVIS_BRANCH https://github.com/uvarc/rc-website.git
-cd rc-website
+REPO=${1:-uvarc/rc-website}
+REPODIR=${REPO##*/}
+
+git clone --depth=50 --branch=$TRAVIS_BRANCH https://github.com/${REPO}.git
+cd ${REPODIR}
 mkdir public
 
 yuicompressor --type js static/js/scripts.js > static/js/scripts.min.js
 yuicompressor --type css static/css/style.css > static/css/style.min.css
 
 echo "-------------"
+echo $REPO
 echo $TRAVIS_BRANCH
 echo "-------------"
 
