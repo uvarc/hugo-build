@@ -11,10 +11,10 @@ mkdir public
 
 if [ -f static/js/scripts.js ]; then
   yuicompressor --type js static/js/scripts.js > static/js/scripts.min.js
-end
+fi
 if [ -f static/css/style.css ]; then
   yuicompressor --type css static/css/style.css > static/css/style.min.css
-end
+fi
 
 echo "-------------"
 echo $REPO
