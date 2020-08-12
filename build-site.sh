@@ -2,6 +2,8 @@
 
 set -e
 
+HUGO=${2:-hugo-0.69.0}
+
 REPO=${1:-uvarc/rc-website}
 REPODIR=${REPO##*/}
 
@@ -26,18 +28,18 @@ echo "EXPIRES header set to: " $EXPIRES
 
 if [ $TRAVIS_BRANCH = "master" ]; then
   # HUGO="hugo-v0.59.0";
-  HUGO="hugo-v0.69.0";
+  # HUGO="hugo-v0.69.0";
   echo "Publishing with: " $HUGO;
   # hugo -v --ignoreCache;
-  hugo-0.69.0 -v --ignoreCache;
+  $HUGO -v --ignoreCache;
   aws s3 sync public s3://$BUCKET_NAME --region=us-east-1 --cache-control public,max-age=$MAX_AGE --expires="$EXPIRES" --metadata generator=$HUGO --delete;
   aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*";
   sleep 10;
   aws lambda invoke --function-name web-crawl --invocation-type Event "outfile.txt"
 elif [ $TRAVIS_BRANCH = "staging" ]; then
-  HUGO="hugo-v0.69.0";
+  # HUGO="hugo-v0.69.0";
   echo "Publishing with: " $HUGO;
-  hugo-0.69.0 -v --ignoreCache;
+  $HUGO -v --ignoreCache;
   aws s3 sync public s3://$BUCKET_NAME_STAGING --region=us-east-1 --cache-control public,max-age=$MAX_AGE --expires="$EXPIRES" --metadata generator=$HUGO --delete;
   aws cloudfront create-invalidation --distribution-id $STAGING_DISTRIBUTION_ID --paths "/*";
   sleep 15;
