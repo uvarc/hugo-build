@@ -2,7 +2,7 @@
 
 set -e
 
-HUGO=${1:-hugo-0.69.0}
+HUGO=${2:-hugo-0.69.0}
 
 REPO=${1:-uvarc/rc-website}
 REPODIR=${REPO##*/}
