@@ -20,6 +20,11 @@ ADD https://github.com/gohugoio/hugo/releases/download/v0.69.0/hugo_0.69.0_Linux
 RUN tar -xzf hugo-0.69.0.tar.gz
 RUN mv hugo /usr/local/bin/hugo-0.69.0
 
+# Install Hugo 0.71-extended
+ADD https://github.com/gohugoio/hugo/releases/download/v0.71.0/hugo_extended_0.71.0_Linux-64bit.tar.gz hugo-ext-0.71.0.tar.gz
+RUN tar -xzf hugo-ext-0.71.0.tar.gz
+RUN mv hugo /usr/local/bin/hugo-0.71.0-ext
+
 # Install AWSCLI
 ADD https://s3.amazonaws.com/aws-cli/awscli-bundle.zip awscli-bundle.zip
 RUN unzip awscli-bundle.zip
