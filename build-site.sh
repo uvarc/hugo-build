@@ -17,8 +17,8 @@ fi
 if [ -f static/css/style.css ]; then
   yuicompressor --type css static/css/style.css > static/css/style.min.css
 fi
-if [ -f static/js/support-request.js ]; then
-  yuicompressor --type js static/js/support-request.js > static/js/support-request.min.js
+if [ -f static/js/user-session.js ]; then
+  yuicompressor --type js static/js/user-session.js > static/js/user-session.min.js
 fi
 
 echo "-------------"
