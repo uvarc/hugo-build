@@ -8,6 +8,7 @@ mkdir public
 
 yuicompressor --type js static/js/scripts.js > static/js/scripts.min.js
 yuicompressor --type css static/css/style.css > static/css/style.min.css
+yuicompressor --type js static/js/support-request.js > static/js/static/js/support-request.min.js
 
 echo "-------------"
 echo $TRAVIS_BRANCH
