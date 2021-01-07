@@ -51,9 +51,10 @@ RUN tar -xzf hugo-ext-0.74.0.tar.gz && \
     /usr/local/bin/hugo-0.74.0-ext version
 
 # Install AWSCLI
-ADD https://s3.amazonaws.com/aws-cli/awscli-bundle.zip awscli-bundle.zip
-RUN unzip awscli-bundle.zip
-RUN ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+# ADD https://s3.amazonaws.com/aws-cli/awscli-bundle.zip awscli-bundle.zip
+# RUN unzip awscli-bundle.zip
+# RUN ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+RUN pip install awscli
 
 # Copy in script
 COPY build-site.sh /root/build-site.sh
