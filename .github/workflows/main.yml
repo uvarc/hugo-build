@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: uvarc/hugo-build:v2
+          tags: uvarc/hugo-build:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
