@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.11.6
 MAINTAINER nmagee@virginia.edu
 
 WORKDIR /root/
@@ -49,6 +49,13 @@ RUN tar -xzf hugo-ext-0.74.0.tar.gz && \
     mv hugo /usr/local/bin/hugo-0.74.0-ext && \
     rm hugo-ext-0.74.0.tar.gz && \
     /usr/local/bin/hugo-0.74.0-ext version
+
+# Install Hugo 0.80-extended
+ADD https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_extended_0.80.0_Linux-64bit.tar.gz hugo-ext-0.80.0.tar.gz
+RUN tar -xzf hugo-ext-0.80.0.tar.gz && \
+    mv hugo /usr/local/bin/hugo-0.80.0-ext && \
+    rm hugo-ext-0.80.0.tar.gz && \
+    /usr/local/bin/hugo-0.80.0-ext version
 
 # Install AWSCLI
 RUN pip install awscli
