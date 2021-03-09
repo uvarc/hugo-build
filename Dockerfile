@@ -1,5 +1,6 @@
 FROM alpine:3.11.6
 MAINTAINER nmagee@virginia.edu
+LABEL org.opencontainers.image.source https://github.com/uvarc/hugo-build
 
 WORKDIR /root/
 ENV AWS_DEFAULT_REGION us-east-1
