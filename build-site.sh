@@ -35,6 +35,7 @@ if [ $BRANCH = "master" ]; then
   echo "Publishing with: " $HUGO;
   # hugo -v --ignoreCache;
   $HUGO -v --ignoreCache;
+  /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/index.html -o public/index.html;
   aws s3 sync public s3://$BUCKET_NAME --region=us-east-1 --cache-control public,max-age=$MAX_AGE --expires="$EXPIRES" --metadata generator=$HUGO --delete;
   aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*";
   sleep 10;
@@ -43,6 +44,7 @@ elif [ $BRANCH = "staging" ]; then
   # HUGO="hugo-v0.69.0";
   echo "Publishing with: " $HUGO;
   $HUGO -v --ignoreCache;
+  /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/index.html -o public/index.html;
   aws s3 sync public s3://$BUCKET_NAME_STAGING --region=us-east-1 --cache-control public,max-age=$MAX_AGE --expires="$EXPIRES" --metadata generator=$HUGO --delete;
   aws cloudfront create-invalidation --distribution-id $STAGING_DISTRIBUTION_ID --paths "/*";
   sleep 15;

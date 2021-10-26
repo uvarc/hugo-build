@@ -6,7 +6,7 @@ WORKDIR /root/
 ENV AWS_DEFAULT_REGION us-east-1
 
 # Update, install Git and things
-RUN apk update && apk add py-pip git python2-dev py-yuicompressor coreutils libstdc++ && rm -rf /var/cache/apk/*
+RUN apk update && apk add py-pip git python2-dev py-yuicompressor coreutils libstdc++ npm && rm -rf /var/cache/apk/*
 
 # Install GLIBC, required for hugo extended version
 ENV GLIBC_VERSION 2.30-r0
@@ -22,8 +22,11 @@ RUN apk --no-cache add ca-certificates wget && \
     apk --no-cache add "glibc-i18n-$GLIBC_VERSION.apk" && \
     rm "glibc-i18n-$GLIBC_VERSION.apk"
    
-# Install
+# Install setuptools
 RUN pip install setuptools
+
+# Install html-minifier
+RUN npm install -g html-minifier
 
 # Install Hugo 0.59
 ADD https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_0.59.1_Linux-64bit.tar.gz hugo.tar.gz
