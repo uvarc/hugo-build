@@ -1,6 +1,5 @@
 FROM alpine:3.11.6
-MAINTAINER nmagee@virginia.edu
-LABEL org.opencontainers.image.source https://github.com/uvarc/hugo-build
+LABEL org.opencontainers.image.source=https://github.com/uvarc/hugo-build
 
 WORKDIR /root/
 ENV AWS_DEFAULT_REGION us-east-1
@@ -23,7 +22,7 @@ RUN apk --no-cache add ca-certificates wget && \
     rm "glibc-i18n-$GLIBC_VERSION.apk"
    
 # Install setuptools
-RUN pip install setuptools
+RUN pip install setuptools awscli
 
 # Install html-minifier
 RUN npm install -g html-minifier
@@ -60,9 +59,6 @@ RUN tar -xzf hugo-ext-0.80.0.tar.gz && \
     mv hugo /usr/local/bin/hugo-0.80.0-ext && \
     rm hugo-ext-0.80.0.tar.gz && \
     /usr/local/bin/hugo-0.80.0-ext version
-
-# Install AWSCLI
-RUN pip install awscli
 
 # Copy in script
 COPY build-site.sh /root/build-site.sh
