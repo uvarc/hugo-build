@@ -56,7 +56,9 @@ elif [ $BRANCH = "staging" ]; then
   echo "Publishing with: " $HUGO;
   $HUGO -v --ignoreCache;
   /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/index.html -o public/index.html;
-  /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/project/index.html -o public/project/index.html;
+  if [ -f public/project/index.html ]; then
+      /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/project/index.html -o public/project/index.html;
+  fi
   aws s3 sync public s3://$BUCKET_NAME_STAGING --region=us-east-1 --cache-control public,max-age=$MAX_AGE,s-maxage=$MAX_AGE --expires="$EXPIRES" --metadata generator=$HUGO --delete;
   aws s3 cp public s3://$BUCKET_NAME_STAGING --metadata-directive REPLACE --exclude "*" --include "*.jpg" --include "*.gif" --include "*.png" --recursive --cache-control max-age=604800,s-maxage=604800
   aws cloudfront create-invalidation --distribution-id $STAGING_DISTRIBUTION_ID --paths "/*";
