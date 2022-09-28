@@ -32,7 +32,7 @@ echo "EXPIRES header set to: " $EXPIRES
 
 if [ $BRANCH = "main" ]; then
   echo "Publishing with: " $HUGO;
-  $HUGO --minify -v --ignoreCache;
+  $HUGO --minify -v; #--ignoreCache;
   # /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/index.html -o public/index.html;
   # if [ -f public/project/index.html ]; then
   #     /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/project/index.html -o public/project/index.html;
@@ -44,7 +44,7 @@ if [ $BRANCH = "main" ]; then
   aws lambda invoke --function-name web-crawl --invocation-type Event "outfile.txt"
 elif [ $BRANCH = "master" ]; then
   echo "Publishing with: " $HUGO;
-  $HUGO --minify -v --ignoreCache;
+  $HUGO --minify -v; # --ignoreCache;
   # /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/index.html -o public/index.html;
   # if [ -f public/project/index.html ]; then
   #     /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/project/index.html -o public/project/index.html;
@@ -59,7 +59,7 @@ elif [ $BRANCH = "master" ]; then
   #exit 0;
 elif [ $BRANCH = "staging" ]; then
   echo "Publishing with: " $HUGO;
-  $HUGO --minify -v --ignoreCache;
+  $HUGO --minify -v; # --ignoreCache;
   # /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/index.html -o public/index.html;
   # if [ -f public/project/index.html ]; then
   #     /usr/bin/html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype public/project/index.html -o public/project/index.html;
