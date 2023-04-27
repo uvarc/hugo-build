@@ -67,6 +67,13 @@ RUN tar -xzf hugo-ext-0.81.0.tar.gz && \
     rm hugo-ext-0.81.0.tar.gz && \
     /usr/local/bin/hugo-0.81.0-ext version
 
+# Install Hugo 0.110-extended 0.110.0+extended
+ADD https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_Linux-64bit.tar.gz hugo-ext-0.110.0.tar.gz
+RUN tar -xzf hugo-ext-0.110.0.tar.gz && \
+    mv hugo /usr/local/bin/hugo-0.110.0-ext && \
+    rm hugo-ext-0.110.0.tar.gz && \
+    /usr/local/bin/hugo-0.110.0-ext version
+
 # Copy in script
 COPY build-site.sh /root/build-site.sh
 RUN chmod +x /root/build-site.sh
