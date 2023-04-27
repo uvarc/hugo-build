@@ -1,5 +1,13 @@
-[![Build Status](https://travis-ci.org/uvarc/hugo-build.svg?branch=master)](https://travis-ci.org/uvarc/hugo-build)
+![Build Status](https://github.com/uvarc/hugo-build/actions/workflows/main.yml/badge.svg)
 
 # Hugo Build container
 
-Currently set for Hugo v0.59.1
+Includes Hugo versions:
+
+- 0.59.1
+- 0.69.0
+- 0.70.0+extended
+- 0.74.0+extended
+- 0.80.0+extended
+- 0.81.0+extended
+- 0.110.0+extended
