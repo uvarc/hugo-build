@@ -11,3 +11,7 @@ Includes Hugo versions:
 - 0.80.0+extended
 - 0.81.0+extended
 - 0.110.0+extended
+
+## Builds
+
+Currently builds a [:v2](https://github.com/uvarc/hugo-build/pkgs/container/hugo-build) tagged image
