@@ -22,7 +22,7 @@ RUN apk --no-cache add ca-certificates wget && \
     rm "glibc-i18n-$GLIBC_VERSION.apk"
    
 # Install setuptools
-RUN pip install setuptools awscli
+RUN pip3 install setuptools awscli
 
 # Install html-minifier
 RUN npm install -g html-minifier
@@ -73,6 +73,13 @@ RUN tar -xzf hugo-ext-0.110.0.tar.gz && \
     mv hugo /usr/local/bin/hugo-0.110.0-ext && \
     rm hugo-ext-0.110.0.tar.gz && \
     /usr/local/bin/hugo-0.110.0-ext version
+
+# Install Hugo 0.133-extended 0.133.0+extended
+ADD https://github.com/gohugoio/hugo/releases/download/v0.133.0/hugo_extended_0.133.0_Linux-64bit.tar.gz hugo-ext-0.133.0.tar.gz
+RUN tar -xzf hugo-ext-0.133.0.tar.gz && \
+    mv hugo /usr/local/bin/hugo-0.133.0-ext && \
+    rm hugo-ext-0.133.0.tar.gz && \
+    /usr/local/bin/hugo-0.133.0-ext version
 
 # Copy in script
 COPY build-site.sh /root/build-site.sh
