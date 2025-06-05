@@ -11,6 +11,7 @@ Includes Hugo versions:
 - 0.80.0+extended
 - 0.81.0+extended
 - 0.110.0+extended
+- 0.133.0+extended
 
 ## Builds
 
