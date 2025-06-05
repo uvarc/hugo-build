@@ -8,9 +8,9 @@ ENV AWS_DEFAULT_REGION us-east-1
 RUN apk update && apk add py-pip git python2-dev py-yuicompressor coreutils libstdc++ npm && rm -rf /var/cache/apk/*
 
 # Install GLIBC, required for hugo extended version
-ENV GLIBC_VERSION 2.30-r0
+ENV GLIBC_VERSION=2.30-r0
 RUN apk --no-cache add ca-certificates wget && \
-    wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
+    wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/3662aea7d82a4a6bd24a4638267e2013be150e2f/sgerrand.rsa.pub && \
     wget "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VERSION/glibc-$GLIBC_VERSION.apk" && \
     apk --no-cache add glibc-${GLIBC_VERSION}.apk && \
     rm "glibc-$GLIBC_VERSION.apk" && \
@@ -20,7 +20,7 @@ RUN apk --no-cache add ca-certificates wget && \
     wget "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VERSION/glibc-i18n-$GLIBC_VERSION.apk" && \
     apk --no-cache add "glibc-i18n-$GLIBC_VERSION.apk" && \
     rm "glibc-i18n-$GLIBC_VERSION.apk"
-   
+
 # Install setuptools
 RUN pip3 install setuptools awscli
 
