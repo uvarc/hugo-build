@@ -15,4 +15,4 @@ Includes Hugo versions:
 
 ## Builds
 
-Currently builds a [`:v2`](https://github.com/uvarc/hugo-build/pkgs/container/hugo-build) tagged image
+Currently builds a [`:v3`](https://github.com/uvarc/hugo-build/pkgs/container/hugo-build) tagged image
