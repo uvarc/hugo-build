@@ -2,7 +2,7 @@ FROM alpine:3.11.6
 LABEL org.opencontainers.image.source=https://github.com/uvarc/hugo-build
 
 WORKDIR /root/
-ENV AWS_DEFAULT_REGION us-east-1
+ENV AWS_DEFAULT_REGION=us-east-1
 
 # Update, install Git and things
 RUN apk update && apk add py-pip git python2-dev py-yuicompressor coreutils libstdc++ npm && rm -rf /var/cache/apk/*
