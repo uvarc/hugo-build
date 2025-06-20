@@ -27,10 +27,14 @@ RUN pip3 install setuptools awscli
 # Install html-minifier
 RUN npm install -g html-minifier
 
+# Create hugo file to easily switch between versions
+COPY hugo-run.sh /usr/local/bin/hugo
+RUN chmod +x /usr/local/bin/hugo
+
 # Install Hugo 0.59
 ADD https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_0.59.1_Linux-64bit.tar.gz hugo.tar.gz
 RUN tar -xzf hugo.tar.gz && \
-    mv hugo /usr/local/bin && \
+    mv hugo /usr/local/bin/hugo-0.59.0 && \
     rm hugo.tar.gz
 
 # Install Hugo 0.69
