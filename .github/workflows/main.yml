@@ -31,9 +31,9 @@ jobs:
         name: Build and push ${{ matrix.hugo-version }} image
         id: docker_build
         uses: docker/build-push-action@v6
-        build-args: HUGO_VERSION=${{ matrix.hugo-version }}
         with:
           push: true
+          build-args: HUGO_VERSION=${{ matrix.hugo-version }}
           tags: ghcr.io/uvarc/hugo-build:v_${{ matrix.hugo-version }}
       -
         name: Image digest
