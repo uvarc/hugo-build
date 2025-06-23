@@ -2,7 +2,7 @@
 
 set -e
 
-HUGO=${2:-hugo-0.69.0}
+HUGO=hugo
 # HUGO.0.81.0=${2:-hugo-0.81.0-ext}
 
 REPO=${1:-uvarc/rc-website}
