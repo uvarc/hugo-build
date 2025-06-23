@@ -8,6 +8,10 @@ on:
 
 jobs:
   ghcr-build:
+    strategy:
+      matrix:
+        hugo-version: [0.59.1, 0.69.0, extended_0.70.0, extended_0.74.0, extended_0.81.0, extended_0.110.0, extended_0.133.0]
+        
     runs-on: ubuntu-latest
     steps:
       -
@@ -24,12 +28,13 @@ jobs:
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_PAT }}
       -
-        name: Build and push
+        name: Build and push ${{ matrix.hugo-version }} image
         id: docker_build
         uses: docker/build-push-action@v6
+        build-args: HUGO_VERSION=${{ matrix.hugo-version }}
         with:
           push: true
-          tags: ghcr.io/uvarc/hugo-build:v3
+          tags: ghcr.io/uvarc/hugo-build:v_${{ matrix.hugo-version }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
