@@ -10,7 +10,23 @@ jobs:
   ghcr-build:
     strategy:
       matrix:
-        hugo-version: [0.59.1, 0.69.0, extended_0.70.0, extended_0.74.0, extended_0.81.0, extended_0.110.0, extended_0.133.0]
+        hugo-version: [0.59.1, 0.69.0, 0.70.0, 0.74.0, 0.81.0, 0.110.0, 0.133.0]
+        extended: [false, true]
+        include:
+          - hugo-version: 0.59.1
+            extended: false
+          - hugo-version: 0.69.0
+            extended: false
+          - hugo-version: 0.70.0
+            extended: true
+          - hugo-version: 0.74.0
+            extended: true
+          - hugo-version: 0.81.0
+            extended: true
+          - hugo-version: 0.110.0
+            extended: true
+          - hugo-version: 0.133.0
+            extended: true
         
     runs-on: ubuntu-latest
     steps:
@@ -33,8 +49,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          build-args: HUGO_VERSION=${{ matrix.hugo-version }}
-          tags: ghcr.io/uvarc/hugo-build:v_${{ matrix.hugo-version }}
+          build-args: HUGO_VERSION=${{ matrix.hugo-version }} HUGO_EXTENDED=${{ matrix.extended }}
+          tags: ghcr.io/uvarc/hugo-build:prod-${{ matrix.hugo-version }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

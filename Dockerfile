@@ -1,7 +1,10 @@
 FROM alpine:3.11.6
 LABEL org.opencontainers.image.source=https://github.com/uvarc/hugo-build
 
-ARG HUGO_VERSION="0.59.0"
+ARG HUGO_VERSION="0.70.0"
+ARG HUGO_EXTENDED="true"
+
+LABEL org.opencontainers.image.description="Hugo build container with Hugo version ${HUGO_VERSION} and extended=${HUGO_EXTENDED}"
 
 WORKDIR /root/
 ENV AWS_DEFAULT_REGION=us-east-1
@@ -30,7 +33,13 @@ RUN pip3 install setuptools awscli
 RUN npm install -g html-minifier
 
 # Install Hugo
-RUN wget https://github.com/gohugoio/hugo/releases/download/v$(echo ${HUGO_VERSION} | sed 's/[^.0-9]//g')/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -O hugo.tar.gz && \
+RUN if [ "${HUGO_EXTENDED}" = "true" ]; then \
+    echo "Installing Hugo Extended version ${HUGO_VERSION}" && \
+    wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz -O hugo.tar.gz ; \
+    else \
+    echo "Installing Hugo version ${HUGO_VERSION}" && \
+    wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -O hugo.tar.gz ; \
+    fi && \
     tar -xzf hugo.tar.gz && \
     mv hugo /usr/local/bin && \
     rm hugo.tar.gz
