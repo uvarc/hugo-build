@@ -10,8 +10,6 @@ jobs:
   ghcr-build:
     strategy:
       matrix:
-        hugo-version: [0.59.1, 0.69.0, 0.70.0, 0.74.0, 0.81.0, 0.110.0, 0.133.0]
-        extended: [false, true]
         include:
           - hugo-version: 0.59.1
             extended: false
