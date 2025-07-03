@@ -51,6 +51,8 @@ jobs:
             HUGO_VERSION=${{ matrix.hugo-version }}
             HUGO_EXTENDED=${{ matrix.extended }}
           tags: ghcr.io/uvarc/hugo-build:prod-${{ matrix.hugo-version }}
+          labels: |
+            org.opencontainers.image.description=Hugo build container with Hugo version ${{ matrix.hugo-version }} and extended=${{ matrix.extended }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

@@ -4,8 +4,6 @@ LABEL org.opencontainers.image.source=https://github.com/uvarc/hugo-build
 ARG HUGO_VERSION="0.70.0"
 ARG HUGO_EXTENDED="true"
 
-LABEL org.opencontainers.image.description="Hugo build container with Hugo version ${HUGO_VERSION} and extended=${HUGO_EXTENDED}"
-
 WORKDIR /root/
 ENV AWS_DEFAULT_REGION=us-east-1
 
