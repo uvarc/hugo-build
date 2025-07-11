@@ -3,13 +3,8 @@
 set -e
 
 HUGO=hugo
-# HUGO.0.81.0=${2:-hugo-0.81.0-ext}
 
-REPO=${1:-uvarc/rc-website}
-REPODIR=${REPO##*/}
-
-git clone --depth=50 --branch=$BRANCH https://github.com/${REPO}.git
-cd ${REPODIR}
+cd /site
 mkdir public
 
 if [ -f static/js/scripts.js ]; then
@@ -21,11 +16,6 @@ fi
 if [ -f static/js/user-session.js ]; then
   yuicompressor --type js static/js/user-session.js > static/js/user-session.min.js
 fi
-
-echo "-------------"
-echo $REPO
-echo $BRANCH
-echo "-------------"
 
 EXPIRES=`date '+%a, %d %b %Y %H:%M:%S GMT' -d "+1 day"`
 echo "EXPIRES header set to: " $EXPIRES
